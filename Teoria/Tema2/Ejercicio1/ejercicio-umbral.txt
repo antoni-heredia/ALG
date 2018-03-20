@@ -1,0 +1,3 @@
+
+Realizar un estudio empírico para determinar un buen umbral para el algoritmo de ordenación por mezcla o mergesort 
+(que utiliza como algoritmo auxiliar el algoritmo de ordenación por inserción para casos de tamaño menor que el umbral). 
