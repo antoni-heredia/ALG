@@ -2,7 +2,6 @@
    @file Ordenaci�n por mezcla
 */
 
-   
 #include <iostream>
 using namespace std;
 #include <ctime>
@@ -10,12 +9,7 @@ using namespace std;
 #include <climits>
 #include <cassert>
 
-
-
-
-
-
-/* ************************************************************ */ 
+/* ************************************************************ */
 /*  M�todo de ordenaci�n por mezcla  */
 
 /**
@@ -29,10 +23,7 @@ using namespace std;
    en sentido creciente de menor a mayor.
    Aplica el algoritmo de mezcla.
 */
-inline static 
-void mergesort(int T[], int num_elem);
-
-
+inline static void mergesort(int T[], int num_elem);
 
 /**
    @brief Ordena parte de un vector por el m�todo de mezcla.
@@ -52,7 +43,6 @@ void mergesort(int T[], int num_elem);
 */
 static void mergesort_lims(int T[], int inicial, int final);
 
-
 /**
    @brief Ordena un vector por el m�todo de inserci�n.
 
@@ -64,9 +54,7 @@ static void mergesort_lims(int T[], int inicial, int final);
    en sentido creciente de menor a mayor.
    Aplica el algoritmo de inserci�n.
 */
-inline static 
-void insercion(int T[], int num_elem);
-
+inline static void insercion(int T[], int num_elem);
 
 /**
    @brief Ordena parte de un vector por el m�todo de inserci�n.
@@ -85,7 +73,6 @@ void insercion(int T[], int num_elem);
    Aplica el algoritmo de la inserci�n.
 */
 static void insercion_lims(int T[], int inicial, int final);
-
 
 /**
    @brief Mezcla dos vectores ordenados sobre otro.
@@ -108,123 +95,119 @@ static void insercion_lims(int T[], int inicial, int final);
 */
 static void fusion(int T[], int inicial, int final, int U[], int V[]);
 
-
-
 /**
    Implementaci�n de las funciones
 **/
 
-
 inline static void insercion(int T[], int num_elem)
 {
-  insercion_lims(T, 0, num_elem);
+	insercion_lims(T, 0, num_elem);
 }
-
 
 static void insercion_lims(int T[], int inicial, int final)
 {
-  int i, j;
-  int aux;
-  for (i = inicial + 1; i < final; i++) {
-    j = i;
-    while ((T[j] < T[j-1]) && (j > 0)) {
-      aux = T[j];
-      T[j] = T[j-1];
-      T[j-1] = aux;
-      j--;
-    };
-  };
+	int i, j;
+	int aux;
+	for (i = inicial + 1; i < final; i++)
+	{
+		j = i;
+		while ((T[j] < T[j - 1]) && (j > 0))
+		{
+			aux = T[j];
+			T[j] = T[j - 1];
+			T[j - 1] = aux;
+			j--;
+		};
+	};
 }
-
 
 int umbral;
 
 void mergesort(int T[], int num_elem)
 {
-  mergesort_lims(T, 0, num_elem);
+	mergesort_lims(T, 0, num_elem);
 }
 
 static void mergesort_lims(int T[], int inicial, int final)
 {
-  if (final - inicial < umbral)
-    {
-      insercion_lims(T, inicial, final);
-    } else {
-      int k = (final - inicial)/2;
+	if (final - inicial < umbral)
+	{
+		insercion_lims(T, inicial, final);
+	}
+	else
+	{
+		int k = (final - inicial) / 2;
 
-      int * U = new int [k - inicial + 1];
-      assert(U);
-      int l, l2;
-      for (l = 0, l2 = inicial; l < k; l++, l2++)
-	U[l] = T[l2];
-      U[l] = INT_MAX;
+		int *U = new int[k - inicial + 1];
+		assert(U);
+		int l, l2;
+		for (l = 0, l2 = inicial; l < k; l++, l2++)
+			U[l] = T[l2];
+		U[l] = INT_MAX;
 
-      int * V = new int [final - k + 1];
-      assert(V);
-      for (l = 0, l2 = k; l < final - k; l++, l2++)
-	V[l] = T[l2];
-      V[l] = INT_MAX;
+		int *V = new int[final - k + 1];
+		assert(V);
+		for (l = 0, l2 = k; l < final - k; l++, l2++)
+			V[l] = T[l2];
+		V[l] = INT_MAX;
 
-      mergesort_lims(U, 0, k);
-      mergesort_lims(V, 0, final - k);
-      fusion(T, inicial, final, U, V);
-      delete [] U;
-      delete [] V;
-    };
+		mergesort_lims(U, 0, k);
+		mergesort_lims(V, 0, final - k);
+		fusion(T, inicial, final, U, V);
+		delete[] U;
+		delete[] V;
+	};
 }
-  
 
 static void fusion(int T[], int inicial, int final, int U[], int V[])
 {
-  int j = 0;
-  int k = 0;
-  for (int i = inicial; i < final; i++)
-    {
-      if (U[j] < V[k]) {
-	T[i] = U[j];
-	j++;
-      } else{
-	T[i] = V[k];
-	k++;
-      };
-    };
+	int j = 0;
+	int k = 0;
+	for (int i = inicial; i < final; i++)
+	{
+		if (U[j] < V[k])
+		{
+			T[i] = U[j];
+			j++;
+		}
+		else
+		{
+			T[i] = V[k];
+			k++;
+		};
+	};
 }
 
-
-
-
-
-int main(int argc, char * argv[])
+int main(int argc, char *argv[])
 {
 
-  if (argc != 3)
-    {
-      cerr << "Formato " << argv[0] << " <num_elem>  <umbral>" << endl;
-      return -1;
-    }
+	if (argc != 3)
+	{
+		cerr << "Formato " << argv[0] << " <num_elem>  <umbral>" << endl;
+		return -1;
+	}
 
-  int n = atoi(argv[1]);
-  umbral = atoi(argv[2]);
+	int n = atoi(argv[1]);
+	umbral = atoi(argv[2]);
 
-  int * T = new int[n];
-  assert(T);
+	int *T = new int[n];
+	assert(T);
 
-  srandom(time(0));
+	srandom(time(0));
 
-  for (int i = 0; i < n; i++)
-    {
-      T[i] = random();
-    }
-  clock_t tini;    // Anotamos el tiempo de inicio
-	clock_t tfin;    // Anotamos el tiempo de finalización
+	for (int i = 0; i < n; i++)
+	{
+		T[i] = random();
+	}
+	clock_t tini; // Anotamos el tiempo de inicio
+	clock_t tfin; // Anotamos el tiempo de finalización
 
-	tini=clock();
-      
-  mergesort(T, n);
-  tfin=clock();
-  cout << umbral << "\t" << (double)( tfin-tini ) / CLOCKS_PER_SEC << endl;
-  delete [] T;
+	tini = clock();
 
-  return 0;
+	mergesort(T, n);
+	tfin = clock();
+	cout << umbral << "\t" << (double)(tfin - tini)  << endl;
+	delete[] T;
+
+	return 0;
 };
- 

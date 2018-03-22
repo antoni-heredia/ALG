@@ -1,0 +1,60 @@
+
+
+*******************************************************************************
+Thu Mar 22 18:01:46 2018
+
+
+FIT:    data read from 'busquedamayorlineal.data'
+        format = z
+        #datapoints = 37
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a            
+   0 1.3828749941e+17   0.00e+00  6.11e+07    1.000000e+00
+   5 3.5601416113e-05  -1.71e-10  6.11e+02    2.131448e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 3.56014e-05
+rel. change during last iteration : -1.71303e-15
+
+degrees of freedom    (FIT_NDF)                        : 36
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.000994449
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.88928e-07
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 2.13145e-09      +/- 2.674e-12    (0.1255%)
+
+
+*******************************************************************************
+Thu Mar 22 18:02:02 2018
+
+
+FIT:    data read from 'busquedamayordyv.data'
+        format = z
+        #datapoints = 37
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+	g(x) = b*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b            
+   0 1.3828749941e+17   0.00e+00  6.11e+07    1.000000e+00
+   5 4.6354939920e-05  -4.39e-11  6.11e+08    2.141664e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 4.63549e-05
+rel. change during last iteration : -4.38546e-16
+
+degrees of freedom    (FIT_NDF)                        : 36
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00113474
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.28764e-06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b               = 2.14166e-09      +/- 3.051e-12    (0.1425%)

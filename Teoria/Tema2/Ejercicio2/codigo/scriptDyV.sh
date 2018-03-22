@@ -5,17 +5,17 @@
 # para arrays de diferentes tamaños.
 
 # Variables:
-INICIO=10
-FIN=200
-INCREMENTO=5
-EJECUTABLE=ejercicio2lineal
-SALIDA=mergesort.data
+INICIO=10000000
+FIN=100000000
+INCREMENTO=2500000
+EJECUTABLE=ejercicio2DyV.out
+SALIDA=busquedamayordyv.data
 
 i=$INICIO
 echo > $SALIDA
 while [ $i -le $FIN ]
 do
-  echo Ejecución umbral = $i
-  echo `./$EJECUTABLE 50000000 $i` >> $SALIDA
+  echo Ejecución datos = $i
+  echo `./$EJECUTABLE $i 10000` >> $SALIDA
   i=$((i+$INCREMENTO))
 done
