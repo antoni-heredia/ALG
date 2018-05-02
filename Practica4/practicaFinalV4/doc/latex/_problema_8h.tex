@@ -1,0 +1,43 @@
+\hypertarget{_problema_8h}{}\section{Referencia del Archivo include/\+Problema.h}
+\label{_problema_8h}\index{include/\+Problema.\+h@{include/\+Problema.\+h}}
+{\ttfamily \#include \char`\"{}Solucion.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Punto.\+h\char`\"{}}\\*
+Dependencia gráfica adjunta para Problema.\+h\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_problema}{Problema}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{_problema_8h_a534ec2be8900a06aded6c33e99a9ecbb}{operator$<$$<$} (std\+::ostream \&flujo, const \hyperlink{class_problema}{Problema} \&p)
+\begin{DoxyCompactList}\small\item\em Sobrecarga del operador $<$$<$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de las funciones}
+\index{Problema.\+h@{Problema.\+h}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Problema.\+h@{Problema.\+h}}
+\subsubsection[{\texorpdfstring{operator$<$$<$(std\+::ostream \&flujo, const Problema \&p)}{operator<<(std::ostream &flujo, const Problema &p)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{flujo, }
+\item[{const {\bf Problema} \&}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{_problema_8h_a534ec2be8900a06aded6c33e99a9ecbb}{}\label{_problema_8h_a534ec2be8900a06aded6c33e99a9ecbb}
+
+
+Sobrecarga del operador $<$$<$. 
+
+Sobrecarga el operador $<$$<$ de la clase \hyperlink{class_problema}{Problema}. 
+\begin{DoxyParams}{Parámetros}
+{\em flujo} & Dato tipo ostream que se utiliza en la función. \\
+\hline
+{\em s} & Objeto \hyperlink{class_problema}{Problema} que queremos mostrar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Retorna la referencia a nuestro objeto (this). Esto permite concatenar varios $<$$<$ (Ej. cout$<$$<$problema1$<$$<$problema2). 
+\end{DoxyReturn}

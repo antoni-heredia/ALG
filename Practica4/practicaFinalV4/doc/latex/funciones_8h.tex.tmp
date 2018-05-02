@@ -1,0 +1,195 @@
+\hypertarget{funciones_8h}{}\section{Referencia del Archivo include/funciones.h}
+\label{funciones_8h}\index{include/funciones.\+h@{include/funciones.\+h}}
+{\ttfamily \#include $<$climits$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$assert.\+h$>$}\\*
+{\ttfamily \#include $<$Solucion.\+h$>$}\\*
+{\ttfamily \#include $<$Problema.\+h$>$}\\*
+Dependencia gráfica adjunta para funciones.\+h\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{funciones_8h_aa5afb049e118d7bc9769dd3be755f91d}{menor} (int a, int b)
+\begin{DoxyCompactList}\small\item\em Función Auxiliar. \end{DoxyCompactList}\item 
+void \hyperlink{funciones_8h_af2aa462e8d7006d65c6aa367b677e464}{crear\+Vector\+Aux} (bool $\ast$v, int n)
+\begin{DoxyCompactList}\small\item\em Función Auxiliar. \end{DoxyCompactList}\item 
+void \hyperlink{funciones_8h_ae3a984c40f9b01c6962e4c9dbde8645e}{Vecino\+Mas\+Cercano} (const \hyperlink{class_problema}{Problema} \&p, int inicio, \hyperlink{class_solucion}{Solucion} \&sol, int \&longi)
+\begin{DoxyCompactList}\small\item\em Función Vecino Más Cercano. \end{DoxyCompactList}\item 
+bool \hyperlink{funciones_8h_ac8c72e03d3bc3d10357401df2126ca71}{guardar\+Solucion} (const char $\ast$nombre, const char $\ast$cxx, const \hyperlink{class_problema}{Problema} \&p, const \hyperlink{class_solucion}{Solucion} \&s)
+\begin{DoxyCompactList}\small\item\em Función Guardar Solución. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de las funciones}
+\index{funciones.\+h@{funciones.\+h}!crear\+Vector\+Aux@{crear\+Vector\+Aux}}
+\index{crear\+Vector\+Aux@{crear\+Vector\+Aux}!funciones.\+h@{funciones.\+h}}
+\subsubsection[{\texorpdfstring{crear\+Vector\+Aux(bool $\ast$v, int n)}{crearVectorAux(bool *v, int n)}}]{\setlength{\rightskip}{0pt plus 5cm}void crear\+Vector\+Aux (
+\begin{DoxyParamCaption}
+\item[{bool $\ast$}]{v, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{funciones_8h_af2aa462e8d7006d65c6aa367b677e464}{}\label{funciones_8h_af2aa462e8d7006d65c6aa367b677e464}
+
+
+Función Auxiliar. 
+
+Crea un vector de booleanos e inicializa todos sus valores a false. 
+\begin{DoxyParams}{Parámetros}
+{\em v} & Puntero al vector que vamos a inicializar. \\
+\hline
+{\em n} & Tamaño del vector v. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+9                                   \{
+10     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<n;i++)
+11         v[i]=\textcolor{keyword}{false};
+12     
+13 \}
+\end{DoxyCode}
+\index{funciones.\+h@{funciones.\+h}!guardar\+Solucion@{guardar\+Solucion}}
+\index{guardar\+Solucion@{guardar\+Solucion}!funciones.\+h@{funciones.\+h}}
+\subsubsection[{\texorpdfstring{guardar\+Solucion(const char $\ast$nombre, const char $\ast$cxx, const Problema \&p, const Solucion \&s)}{guardarSolucion(const char *nombre, const char *cxx, const Problema &p, const Solucion &s)}}]{\setlength{\rightskip}{0pt plus 5cm}bool guardar\+Solucion (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{nombre, }
+\item[{const char $\ast$}]{cxx, }
+\item[{const {\bf Problema} \&}]{p, }
+\item[{const {\bf Solucion} \&}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{funciones_8h_ac8c72e03d3bc3d10357401df2126ca71}{}\label{funciones_8h_ac8c72e03d3bc3d10357401df2126ca71}
+
+
+Función Guardar Solución. 
+
+La función guardará en el fichero nombre, la solución s al problema p correspondiente a la instancia leída desde el fichero cxx. Devolverá true si se ha guardado con éxito o false si ha habido algún error. 
+\begin{DoxyParams}{Parámetros}
+{\em nombre} & Fichero donde se va a guardar el resultado. \\
+\hline
+{\em cxx} & Instancia que va a ser leída. \\
+\hline
+{\em p} & Objeto \hyperlink{class_problema}{Problema} correspondiente a la instancia leída. \\
+\hline
+{\em s} & Objeto Solución correspondiente a la mejor solución del problema. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Devolverá true si se ha guardado con éxito o false si ha habido algún error. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+50                                                                                                    \{
+51     \textcolor{keywordtype}{int} n=p.\hyperlink{class_problema_ada03c7fad394755e16d3cb1028cae674}{tamanio}(),i;
+52     \textcolor{keywordtype}{int} longitud=p.\hyperlink{class_problema_aa8b2192237d00f7c49f45874500a3966}{longitudRecorrido}(s);
+53     ofstream fs;
+54     \textcolor{keywordtype}{string} instancia(cxx);
+55     fs.open(nombre);
+56     
+57     fs << \textcolor{stringliteral}{"NOMBRE DE LA INSTANCIA: "}<<instancia.substr(0,instancia.length()-4)<<endl;
+58     fs << \textcolor{stringliteral}{"TAMANIO: "}<<n<<endl;
+59     fs << \textcolor{stringliteral}{"LONGITUD: "}<<longitud<<endl;
+60     fs << \textcolor{stringliteral}{"ORDEN: "}<<endl;
+61     fs << s<<endl;
+62     fs <<  \textcolor{stringliteral}{"COORDENADAS: "}<<endl;
+63     \textcolor{keywordflow}{for}(i=0;i<n;i++)\{
+64         fs << p.\hyperlink{class_problema_a5e13dd9f70cdc628b1af2c9e86210dd0}{coordenadas}(s.\hyperlink{class_solucion_afa9416d8604b0e2a17a623cf20287ae6}{ciudad}(i)).getX()<<\textcolor{stringliteral}{", "}<<p.
+      \hyperlink{class_problema_a5e13dd9f70cdc628b1af2c9e86210dd0}{coordenadas}(s.\hyperlink{class_solucion_afa9416d8604b0e2a17a623cf20287ae6}{ciudad}(i)).getY()<<endl;
+65     \}   
+66     fs.close();
+67 
+68     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+69 \}
+\end{DoxyCode}
+\index{funciones.\+h@{funciones.\+h}!menor@{menor}}
+\index{menor@{menor}!funciones.\+h@{funciones.\+h}}
+\subsubsection[{\texorpdfstring{menor(int a, int b)}{menor(int a, int b)}}]{\setlength{\rightskip}{0pt plus 5cm}int menor (
+\begin{DoxyParamCaption}
+\item[{int}]{a, }
+\item[{int}]{b}
+\end{DoxyParamCaption}
+)}\hypertarget{funciones_8h_aa5afb049e118d7bc9769dd3be755f91d}{}\label{funciones_8h_aa5afb049e118d7bc9769dd3be755f91d}
+
+
+Función Auxiliar. 
+
+Calcula el menor entre dos enteros. 
+\begin{DoxyParams}{Parámetros}
+{\em a} & Entero 1. \\
+\hline
+{\em b} & Entero 2. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Retorna Entero 1 si es menor a Entero 2 o Entero 2 si es menor a Entero 1. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+6                       \{
+7     \textcolor{keywordflow}{return} (a>b)? b:a;
+8 \}
+\end{DoxyCode}
+\index{funciones.\+h@{funciones.\+h}!Vecino\+Mas\+Cercano@{Vecino\+Mas\+Cercano}}
+\index{Vecino\+Mas\+Cercano@{Vecino\+Mas\+Cercano}!funciones.\+h@{funciones.\+h}}
+\subsubsection[{\texorpdfstring{Vecino\+Mas\+Cercano(const Problema \&p, int inicio, Solucion \&sol, int \&longi)}{VecinoMasCercano(const Problema &p, int inicio, Solucion &sol, int &longi)}}]{\setlength{\rightskip}{0pt plus 5cm}void Vecino\+Mas\+Cercano (
+\begin{DoxyParamCaption}
+\item[{const {\bf Problema} \&}]{p, }
+\item[{int}]{inicio, }
+\item[{{\bf Solucion} \&}]{sol, }
+\item[{int \&}]{longi}
+\end{DoxyParamCaption}
+)}\hypertarget{funciones_8h_ae3a984c40f9b01c6962e4c9dbde8645e}{}\label{funciones_8h_ae3a984c40f9b01c6962e4c9dbde8645e}
+
+
+Función Vecino Más Cercano. 
+
+Dada un objeto Solución vacía y una posición de inicio se obtiene la \char`\"{}solución\char`\"{} de distancia menor del objeto \hyperlink{class_problema}{Problema}. 
+\begin{DoxyParams}{Parámetros}
+{\em p} & Objeto \hyperlink{class_problema}{Problema} que contiene el problema que queremos calcular. \\
+\hline
+{\em inicio} & Posición del vector por cual vamos a empezar. \\
+\hline
+{\em sol} & Objeto \hyperlink{class_solucion}{Solucion} que vamos a sobreescribir con la solución más óptima. \\
+\hline
+{\em longi} & Entero que contendrá la longitud menor calculada. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+15                                                                                   \{
+16     \textcolor{keywordtype}{int} n=p.\hyperlink{class_problema_ada03c7fad394755e16d3cb1028cae674}{tamanio}();
+17     \textcolor{keywordtype}{int} minimo=0,j,pos\_minimo=0,contador=1,i=inicio;
+18     assert(n>0);
+19     \textcolor{keywordtype}{bool}* aux;
+20     aux=\textcolor{keyword}{new} \textcolor{keywordtype}{bool}[n];
+21 
+22     \hyperlink{funciones_8cpp_af2aa462e8d7006d65c6aa367b677e464}{crearVectorAux}(aux,n);
+23     \textcolor{keywordtype}{int}* solu;
+24     solu=\textcolor{keyword}{new} \textcolor{keywordtype}{int}[n];
+25     
+26     aux[inicio]=\textcolor{keyword}{true};
+27     solu[0]=inicio;
+28     \textcolor{keywordflow}{while}(contador<n)\{
+29         minimo=INT\_MAX;
+30         
+31         \textcolor{keywordflow}{for}(j=0;j<n;j++)\{
+32             \textcolor{comment}{//cout <<i<< " "<<j<<"\(\backslash\)n";}
+33             \textcolor{keywordflow}{if}(!aux[j] && (p.\hyperlink{class_problema_afceb99f491e5c89c028bc7fe568b9e7a}{distancia}(i,j)<minimo) && j!=i) \{         
+34                 minimo=p.\hyperlink{class_problema_afceb99f491e5c89c028bc7fe568b9e7a}{distancia}(i,j);
+35                 pos\_minimo=j;       
+36             \}           
+37         \}
+38         i=pos\_minimo;
+39         aux[i]=\textcolor{keyword}{true};
+40         solu[contador]=i;
+41         contador++;
+42     \}       
+43     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} h=0;h<n;h++)
+44         sol.\hyperlink{class_solucion_a1827270a149184c626cd7627ef80a1be}{SetIndice}(h,solu[h]);
+45     longi=p.\hyperlink{class_problema_aa8b2192237d00f7c49f45874500a3966}{longitudRecorrido}(sol);
+46     
+47     \textcolor{keyword}{delete} [] solu;
+48     \textcolor{keyword}{delete} [] aux;
+49 \}
+\end{DoxyCode}

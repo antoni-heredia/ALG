@@ -1,0 +1,374 @@
+\hypertarget{class_solucion}{}\section{Referencia de la Clase Solucion}
+\label{class_solucion}\index{Solucion@{Solucion}}
+
+
+{\ttfamily \#include $<$Solucion.\+h$>$}
+
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_solucion_aee1f8f6ec9caf3886f7e4a23b1084966}{Solucion} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\hyperlink{class_solucion_acd917e47259aee67810ec38a37709123}{Solucion} (int v\mbox{[}$\,$\mbox{]}, int n)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_solucion_a6e3225367ac4bf17e34b778553e0c574}{Solucion} (int n)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_solucion_ae91a9a5271288614bf6028f316d45144}{Solucion} (const \hyperlink{class_solucion}{Solucion} \&otra)
+\begin{DoxyCompactList}\small\item\em Constructor Copia. \end{DoxyCompactList}\item 
+void \hyperlink{class_solucion_a1827270a149184c626cd7627ef80a1be}{Set\+Indice} (int indice, int elemento)
+\begin{DoxyCompactList}\small\item\em Método Set. \end{DoxyCompactList}\item 
+int \hyperlink{class_solucion_a1fbc35b09567a9f40c986e6d0d76342b}{posicion} (int c) const 
+\begin{DoxyCompactList}\small\item\em Método Get. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{class_solucion_a3e82f2c3536bcdb9a0b87b77db2576a7}{Get\+Puntero} () const 
+\begin{DoxyCompactList}\small\item\em Método Get. \end{DoxyCompactList}\item 
+int \hyperlink{class_solucion_af6c63418791149493213c4b1f5a5e9ab}{Longitud} () const 
+\begin{DoxyCompactList}\small\item\em Método Get. \end{DoxyCompactList}\item 
+\hyperlink{class_solucion_abcd722b5e063f2a2a54c0d48b349c76a}{$\sim$\+Solucion} ()
+\begin{DoxyCompactList}\small\item\em Método Destructor. \end{DoxyCompactList}\item 
+\hyperlink{class_solucion}{Solucion} \& \hyperlink{class_solucion_a9c5d670e6cac2b067ce819e2afcfe4b1}{operator=} (const \hyperlink{class_solucion}{Solucion} \&c)
+\begin{DoxyCompactList}\small\item\em Sobrecarga del operador =. \end{DoxyCompactList}\item 
+int \hyperlink{class_solucion_afa9416d8604b0e2a17a623cf20287ae6}{ciudad} (int pos) const 
+\begin{DoxyCompactList}\small\item\em Método Get. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_solucion_a6112a06f010b863b0a4a324f9ccfc5e9}{To\+\_\+string} ()
+\begin{DoxyCompactList}\small\item\em Método Público Auxiliar. \end{DoxyCompactList}\item 
+void \hyperlink{class_solucion_a9928e3f8acfd0097437dc53452aadd99}{Cambiar\+Tamanio} (int n)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Clase \hyperlink{class_solucion}{Solucion}. Esta clase se utiliza para almacenar una solución válida que nos permita interactuar con nuestra clase principal, \hyperlink{class_problema}{Problema}. 
+
+\subsection{Documentación del constructor y destructor}
+\index{Solucion@{Solucion}!Solucion@{Solucion}}
+\index{Solucion@{Solucion}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{Solucion()}{Solucion()}}]{\setlength{\rightskip}{0pt plus 5cm}Solucion\+::\+Solucion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_solucion_aee1f8f6ec9caf3886f7e4a23b1084966}{}\label{class_solucion_aee1f8f6ec9caf3886f7e4a23b1084966}
+
+
+Constructor por defecto. 
+
+Construye una solución a partir del vector y lo inicializa con los valores por defecto. 
+\begin{DoxyCode}
+8                   \{
+9     numeroCiudades=0;
+10     Recorrido=0;
+11 \}
+\end{DoxyCode}
+\index{Solucion@{Solucion}!Solucion@{Solucion}}
+\index{Solucion@{Solucion}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{Solucion(int v[], int n)}{Solucion(int v[], int n)}}]{\setlength{\rightskip}{0pt plus 5cm}Solucion\+::\+Solucion (
+\begin{DoxyParamCaption}
+\item[{int}]{v\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{class_solucion_acd917e47259aee67810ec38a37709123}{}\label{class_solucion_acd917e47259aee67810ec38a37709123}
+
+
+Constructor. 
+
+Construye una solución a partir del vector v. 
+\begin{DoxyParams}{Parámetros}
+{\em v} & Vector de enteros que se usará para crear el objeto Solución. \\
+\hline
+{\em n} & Entero que permite indicar el número de ciudades de nuestro objeto. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+12                                 \{
+13     ReservarMemoria(n);
+14     \textcolor{keywordtype}{bool} escorrecto=\hyperlink{_solucion_8cpp_a3c054b0873b51fd0971aa606d2a76bb8}{vectorCorrecto}(v,n);  
+15     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<n && escorrecto;i++)\{
+16         Recorrido[i]=v[i];  
+17     \}
+18     numeroCiudades=n;
+19 \}
+\end{DoxyCode}
+\index{Solucion@{Solucion}!Solucion@{Solucion}}
+\index{Solucion@{Solucion}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{Solucion(int n)}{Solucion(int n)}}]{\setlength{\rightskip}{0pt plus 5cm}Solucion\+::\+Solucion (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{class_solucion_a6e3225367ac4bf17e34b778553e0c574}{}\label{class_solucion_a6e3225367ac4bf17e34b778553e0c574}
+
+
+Constructor. 
+
+Construye una solución de manera aleatoria. 
+\begin{DoxyParams}{Parámetros}
+{\em n} & Entero que indica el número de ciudades que se van a generar aleatoriamente. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+94                        \{
+95     
+96     \textcolor{keywordtype}{int} intercambios=n/2,pos1,pos2;
+97     ReservarMemoria(n);
+98     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<n;i++)
+99         Recorrido[i]=i;
+100     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0;j<intercambios;j++)\{
+101         pos1=rand()%n;
+102         pos2=rand()%n;
+103 
+104         \hyperlink{_solucion_8cpp_a566caa86eed7599b462ad8abdccb5ce4}{IntercambiaComponentes}(Recorrido,pos1,pos2);
+105     \}
+106     numeroCiudades=n;
+107 \}
+\end{DoxyCode}
+\index{Solucion@{Solucion}!Solucion@{Solucion}}
+\index{Solucion@{Solucion}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{Solucion(const Solucion \&otra)}{Solucion(const Solucion &otra)}}]{\setlength{\rightskip}{0pt plus 5cm}Solucion\+::\+Solucion (
+\begin{DoxyParamCaption}
+\item[{const {\bf Solucion} \&}]{otra}
+\end{DoxyParamCaption}
+)}\hypertarget{class_solucion_ae91a9a5271288614bf6028f316d45144}{}\label{class_solucion_ae91a9a5271288614bf6028f316d45144}
+
+
+Constructor Copia. 
+
+Construye una solución como copia de otra. 
+\begin{DoxyParams}{Parámetros}
+{\em otra} & Objeto Solución que queremos copiar. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+108                                       \{
+109     Liberar();  
+110     ReservarMemoria(numeroCiudades);
+111     numeroCiudades=otra.\hyperlink{class_solucion_af6c63418791149493213c4b1f5a5e9ab}{Longitud}();
+112     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<numeroCiudades; i++)\{
+113         \hyperlink{class_solucion_a1827270a149184c626cd7627ef80a1be}{SetIndice}(i, otra.\hyperlink{class_solucion_afa9416d8604b0e2a17a623cf20287ae6}{ciudad}(i));
+114     \}
+115 \}
+\end{DoxyCode}
+\index{Solucion@{Solucion}!````~Solucion@{$\sim$\+Solucion}}
+\index{````~Solucion@{$\sim$\+Solucion}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{$\sim$\+Solucion()}{~Solucion()}}]{\setlength{\rightskip}{0pt plus 5cm}Solucion\+::$\sim$\+Solucion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_solucion_abcd722b5e063f2a2a54c0d48b349c76a}{}\label{class_solucion_abcd722b5e063f2a2a54c0d48b349c76a}
+
+
+Método Destructor. 
+
+Libera la memoria usada por el vector dinámico y le asigna al dato miembro numero\+Ciudades el valor 0. 
+\begin{DoxyCode}
+117                    \{
+118     Liberar();
+119     numeroCiudades=0;
+120 \}
+\end{DoxyCode}
+
+
+\subsection{Documentación de las funciones miembro}
+\index{Solucion@{Solucion}!Cambiar\+Tamanio@{Cambiar\+Tamanio}}
+\index{Cambiar\+Tamanio@{Cambiar\+Tamanio}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{Cambiar\+Tamanio(int n)}{CambiarTamanio(int n)}}]{\setlength{\rightskip}{0pt plus 5cm}void Solucion\+::\+Cambiar\+Tamanio (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{class_solucion_a9928e3f8acfd0097437dc53452aadd99}{}\label{class_solucion_a9928e3f8acfd0097437dc53452aadd99}
+
+\begin{DoxyCode}
+53                                   \{
+54     Liberar();
+55     ReservarMemoria(n);
+56     numeroCiudades=n;
+57 \}
+\end{DoxyCode}
+\index{Solucion@{Solucion}!ciudad@{ciudad}}
+\index{ciudad@{ciudad}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{ciudad(int pos) const }{ciudad(int pos) const }}]{\setlength{\rightskip}{0pt plus 5cm}int Solucion\+::ciudad (
+\begin{DoxyParamCaption}
+\item[{int}]{pos}
+\end{DoxyParamCaption}
+) const}\hypertarget{class_solucion_afa9416d8604b0e2a17a623cf20287ae6}{}\label{class_solucion_afa9416d8604b0e2a17a623cf20287ae6}
+
+
+Método Get. 
+
+Devuelve la ciudad que ocupa la posición dada. 
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posición del vector que \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Retorna el dato miembro del objeto, numero\+Ciudades. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+36                                   \{
+37     \textcolor{keywordflow}{return} Recorrido[pos];
+38 \}
+\end{DoxyCode}
+\index{Solucion@{Solucion}!Get\+Puntero@{Get\+Puntero}}
+\index{Get\+Puntero@{Get\+Puntero}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{Get\+Puntero() const }{GetPuntero() const }}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ Solucion\+::\+Get\+Puntero (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{class_solucion_a3e82f2c3536bcdb9a0b87b77db2576a7}{}\label{class_solucion_a3e82f2c3536bcdb9a0b87b77db2576a7}
+
+
+Método Get. 
+
+Devuelve la posición de la memoria donde está nuestro vector dinámico Recorrido. \begin{DoxyReturn}{Devuelve}
+Retorna la posición de inicio del vector Recorrido. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+32                                 \{
+33     \textcolor{keywordflow}{return} Recorrido;
+34 \}
+\end{DoxyCode}
+\index{Solucion@{Solucion}!Longitud@{Longitud}}
+\index{Longitud@{Longitud}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{Longitud() const }{Longitud() const }}]{\setlength{\rightskip}{0pt plus 5cm}int Solucion\+::\+Longitud (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{class_solucion_af6c63418791149493213c4b1f5a5e9ab}{}\label{class_solucion_af6c63418791149493213c4b1f5a5e9ab}
+
+
+Método Get. 
+
+Devuelve el número de ciudades que tiene nuestro objeto Solución. \begin{DoxyReturn}{Devuelve}
+Retorna el dato miembro del objeto, numero\+Ciudades. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+28                              \{
+29     \textcolor{keywordflow}{return} numeroCiudades;
+30 \}
+\end{DoxyCode}
+\index{Solucion@{Solucion}!operator=@{operator=}}
+\index{operator=@{operator=}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{operator=(const Solucion \&c)}{operator=(const Solucion &c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Solucion} \& Solucion\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Solucion} \&}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{class_solucion_a9c5d670e6cac2b067ce819e2afcfe4b1}{}\label{class_solucion_a9c5d670e6cac2b067ce819e2afcfe4b1}
+
+
+Sobrecarga del operador =. 
+
+Sobrecarga el operador = de la clase Solución. 
+\begin{DoxyParams}{Parámetros}
+{\em c} & Objeto \hyperlink{class_solucion}{Solucion} que usaremos para la Solución. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Retorna la referencia a nuestro objeto (this). Esto permite concatenar varios = (Ej. sol1=sol2=sol3). 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+82                                               \{
+83     \textcolor{keywordflow}{if}(Recorrido!=0) 
+84         Liberar();
+85     ReservarMemoria(c.\hyperlink{class_solucion_af6c63418791149493213c4b1f5a5e9ab}{Longitud}());
+86     numeroCiudades = c.\hyperlink{class_solucion_af6c63418791149493213c4b1f5a5e9ab}{Longitud}();
+87     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<numeroCiudades; i++)\{
+88         \hyperlink{class_solucion_a1827270a149184c626cd7627ef80a1be}{SetIndice}(i, c.\hyperlink{class_solucion_afa9416d8604b0e2a17a623cf20287ae6}{ciudad}(i));
+89     \} 
+90     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+91 \}
+\end{DoxyCode}
+\index{Solucion@{Solucion}!posicion@{posicion}}
+\index{posicion@{posicion}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{posicion(int c) const }{posicion(int c) const }}]{\setlength{\rightskip}{0pt plus 5cm}int Solucion\+::posicion (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+) const}\hypertarget{class_solucion_a1fbc35b09567a9f40c986e6d0d76342b}{}\label{class_solucion_a1fbc35b09567a9f40c986e6d0d76342b}
+
+
+Método Get. 
+
+Devuelve la posición donde se encuentra una determinada ciudad en el vector Recorrido. 
+\begin{DoxyParams}{Parámetros}
+{\em c} & Ciudad dada para obtener su posición. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Retorna la posición de la ciudad. -\/1 si no se encuentra. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+39                                  \{
+40     \textcolor{keywordtype}{int} resultado=-1;
+41     \textcolor{keywordtype}{bool} encontrado=\textcolor{keyword}{false};
+42     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i< \hyperlink{class_solucion_af6c63418791149493213c4b1f5a5e9ab}{Longitud}() && !encontrado; i++)\{
+43         \textcolor{keywordflow}{if} (\hyperlink{class_solucion_afa9416d8604b0e2a17a623cf20287ae6}{ciudad}(i) == c)\{
+44             encontrado=\textcolor{keyword}{true};
+45             resultado=i;
+46         \}
+47     \}
+48     \textcolor{keywordflow}{return} resultado;
+49 \}   
+\end{DoxyCode}
+\index{Solucion@{Solucion}!Set\+Indice@{Set\+Indice}}
+\index{Set\+Indice@{Set\+Indice}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{Set\+Indice(int indice, int elemento)}{SetIndice(int indice, int elemento)}}]{\setlength{\rightskip}{0pt plus 5cm}void Solucion\+::\+Set\+Indice (
+\begin{DoxyParamCaption}
+\item[{int}]{indice, }
+\item[{int}]{elemento}
+\end{DoxyParamCaption}
+)}\hypertarget{class_solucion_a1827270a149184c626cd7627ef80a1be}{}\label{class_solucion_a1827270a149184c626cd7627ef80a1be}
+
+
+Método Set. 
+
+Copia un nuevo valor en una posición del vector Recorrido. 
+\begin{DoxyParams}{Parámetros}
+{\em indice} & Posición del vector que se va a sobreescribir. \\
+\hline
+{\em elemento} & Valor nuevo. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+50                                                 \{
+51     Recorrido[indice]=elemento;
+52 \}
+\end{DoxyCode}
+\index{Solucion@{Solucion}!To\+\_\+string@{To\+\_\+string}}
+\index{To\+\_\+string@{To\+\_\+string}!Solucion@{Solucion}}
+\subsubsection[{\texorpdfstring{To\+\_\+string()}{To_string()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Solucion\+::\+To\+\_\+string (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_solucion_a6112a06f010b863b0a4a324f9ccfc5e9}{}\label{class_solucion_a6112a06f010b863b0a4a324f9ccfc5e9}
+
+
+Método Público Auxiliar. 
+
+Devuelve el recorrido como un string separando los datos por comas. \begin{DoxyReturn}{Devuelve}
+Retorna el un string con el resultado. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+122                              \{ \textcolor{comment}{// devuelve el recorrido como un string separando los datos por comas}
+123     std::string Resultado= \textcolor{stringliteral}{"("};
+124     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<\hyperlink{class_solucion_af6c63418791149493213c4b1f5a5e9ab}{Longitud}(); i++)\{
+125         Resultado+= std::to\_string(\hyperlink{class_solucion_afa9416d8604b0e2a17a623cf20287ae6}{ciudad}(i));
+126         \textcolor{keywordflow}{if} (i != \hyperlink{class_solucion_af6c63418791149493213c4b1f5a5e9ab}{Longitud}()-1)\{
+127             Resultado+= \textcolor{stringliteral}{","};
+128         \}
+129     \}
+130     Resultado+= \textcolor{stringliteral}{")"};
+131     \textcolor{keywordflow}{return} Resultado;
+132 \}
+\end{DoxyCode}
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_solucion_8h}{Solucion.\+h}\item 
+src/\hyperlink{_solucion_8cpp}{Solucion.\+cpp}\end{DoxyCompactItemize}

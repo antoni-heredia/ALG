@@ -1,0 +1,120 @@
+\hypertarget{_solucion_8h}{}\section{Referencia del Archivo include/\+Solucion.h}
+\label{_solucion_8h}\index{include/\+Solucion.\+h@{include/\+Solucion.\+h}}
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$cstring$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+Dependencia gráfica adjunta para Solucion.\+h\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_solucion}{Solucion}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{_solucion_8h_a3c054b0873b51fd0971aa606d2a76bb8}{vector\+Correcto} (int $\ast$vector, int n)
+\begin{DoxyCompactList}\small\item\em Función auxiliar de la clase Solución. \end{DoxyCompactList}\item 
+void \hyperlink{_solucion_8h_a566caa86eed7599b462ad8abdccb5ce4}{Intercambia\+Componentes} (int $\ast$\&vector, int n1, int n2)
+\begin{DoxyCompactList}\small\item\em Función auxiliar de la clase Solución. \end{DoxyCompactList}\item 
+std\+::ostream \& \hyperlink{_solucion_8h_a91f8e885290cb04c938bceb964a3e239}{operator$<$$<$} (std\+::ostream \&flujo, const \hyperlink{class_solucion}{Solucion} \&s)
+\begin{DoxyCompactList}\small\item\em Sobrecarga del operador $<$$<$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de las funciones}
+\index{Solucion.\+h@{Solucion.\+h}!Intercambia\+Componentes@{Intercambia\+Componentes}}
+\index{Intercambia\+Componentes@{Intercambia\+Componentes}!Solucion.\+h@{Solucion.\+h}}
+\subsubsection[{\texorpdfstring{Intercambia\+Componentes(int $\ast$\&vector, int n1, int n2)}{IntercambiaComponentes(int *&vector, int n1, int n2)}}]{\setlength{\rightskip}{0pt plus 5cm}void Intercambia\+Componentes (
+\begin{DoxyParamCaption}
+\item[{int $\ast$\&}]{vector, }
+\item[{int}]{n1, }
+\item[{int}]{n2}
+\end{DoxyParamCaption}
+)}\hypertarget{_solucion_8h_a566caa86eed7599b462ad8abdccb5ce4}{}\label{_solucion_8h_a566caa86eed7599b462ad8abdccb5ce4}
+
+
+Función auxiliar de la clase Solución. 
+
+Intercambia en un array de enteros la posición de dos elementos del mismo. 
+\begin{DoxyParams}{Parámetros}
+{\em vector} & Puntero al array al que queremos intercambiar los datos. \\
+\hline
+{\em n1} & Entero que corresponde a la ciudad 1. \\
+\hline
+{\em n2} & Entero que corresponde a la ciudad 2. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+76                                                            \{
+77     \textcolor{keywordtype}{int} aux=vector[n1];
+78     vector[n1]=vector[n2];
+79     vector[n2]=aux;
+80 \}
+\end{DoxyCode}
+\index{Solucion.\+h@{Solucion.\+h}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Solucion.\+h@{Solucion.\+h}}
+\subsubsection[{\texorpdfstring{operator$<$$<$(std\+::ostream \&flujo, const Solucion \&s)}{operator<<(std::ostream &flujo, const Solucion &s)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{flujo, }
+\item[{const {\bf Solucion} \&}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{_solucion_8h_a91f8e885290cb04c938bceb964a3e239}{}\label{_solucion_8h_a91f8e885290cb04c938bceb964a3e239}
+
+
+Sobrecarga del operador $<$$<$. 
+
+Sobrecarga el operador $<$$<$ de la clase Solución. 
+\begin{DoxyParams}{Parámetros}
+{\em flujo} & Dato tipo ostream que se utiliza en la función. \\
+\hline
+{\em s} & Objeto Solución que queremos mostrar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Retorna la referencia a nuestro objeto (this). Esto permite concatenar varios $<$$<$ (Ej. cout$<$$<$sol1$<$$<$sol2). 
+\end{DoxyReturn}
+\index{Solucion.\+h@{Solucion.\+h}!vector\+Correcto@{vector\+Correcto}}
+\index{vector\+Correcto@{vector\+Correcto}!Solucion.\+h@{Solucion.\+h}}
+\subsubsection[{\texorpdfstring{vector\+Correcto(int $\ast$vector, int n)}{vectorCorrecto(int *vector, int n)}}]{\setlength{\rightskip}{0pt plus 5cm}bool vector\+Correcto (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{vector, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{_solucion_8h_a3c054b0873b51fd0971aa606d2a76bb8}{}\label{_solucion_8h_a3c054b0873b51fd0971aa606d2a76bb8}
+
+
+Función auxiliar de la clase Solución. 
+
+Verifica si los valores almacenados representan una permutación. 
+\begin{DoxyParams}{Parámetros}
+{\em vector} & Puntero al array al que queremos comprobar los datos. \\
+\hline
+{\em n} & Número de ciudades que tiene el vector pasado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Retorna true si el vector pasado presenta una permutación y false si no es así. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+58                                        \{
+59     \textcolor{keywordtype}{int} i=0, j;
+60     \textcolor{keywordtype}{int} apariciones\_temp=1;
+61     \textcolor{keywordtype}{bool} escorrecto=\textcolor{keyword}{true};
+62     \textcolor{keywordflow}{for} (i=0; i<n && apariciones\_temp==1;i++)\{
+63         apariciones\_temp = 0;
+64         \textcolor{keywordflow}{for}(j=0; j< n ; j++)\{
+65             \textcolor{keywordflow}{if} (vector[j] == i)
+66                 apariciones\_temp++;
+67             
+68         \}
+69     \}
+70     \textcolor{keywordflow}{if} (apariciones\_temp != 1)\{
+71         escorrecto=\textcolor{keyword}{false};
+72     \}
+73     \textcolor{keywordflow}{return} escorrecto;
+74 \}
+\end{DoxyCode}

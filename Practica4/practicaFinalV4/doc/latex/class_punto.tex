@@ -1,0 +1,209 @@
+\hypertarget{class_punto}{}\section{Referencia de la Clase Punto}
+\label{class_punto}\index{Punto@{Punto}}
+
+
+{\ttfamily \#include $<$Punto.\+h$>$}
+
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_punto_a4b8b70b933ff13493ee5ddb3c8532c10}{Punto} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_punto_a911bb8d88eaa1f9904a27b0e159a51c0}{Punto} (double x, double y)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+double \hyperlink{class_punto_af6657dca9bbda402a7ee28f460e1716d}{getX} ()
+\begin{DoxyCompactList}\small\item\em Método Get. \end{DoxyCompactList}\item 
+double \hyperlink{class_punto_ad6b70bca3b0ca4fc19a4796d359685b7}{getY} ()
+\begin{DoxyCompactList}\small\item\em Método Get. \end{DoxyCompactList}\item 
+void \hyperlink{class_punto_a9afe2951a7fe4078eecace853608b109}{setX} (double x)
+\begin{DoxyCompactList}\small\item\em Método Set. \end{DoxyCompactList}\item 
+void \hyperlink{class_punto_a299fda2149b242f0343772517cb40574}{setY} (double y)
+\begin{DoxyCompactList}\small\item\em Método Set. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_punto_a57d2d4c38d80efce6b34397d8924d7ac}{To\+String} ()
+\begin{DoxyCompactList}\small\item\em Método Público Auxiliar. \end{DoxyCompactList}\item 
+double \hyperlink{class_punto_a0881575dfc445d87eb62d649764c3b1c}{Distancia} (\hyperlink{class_punto}{Punto} b)
+\begin{DoxyCompactList}\small\item\em Método Público Auxiliar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Clase \hyperlink{class_punto}{Punto}. Clase utilizada para representar puntos en 2D. 
+
+\subsection{Documentación del constructor y destructor}
+\index{Punto@{Punto}!Punto@{Punto}}
+\index{Punto@{Punto}!Punto@{Punto}}
+\subsubsection[{\texorpdfstring{Punto()}{Punto()}}]{\setlength{\rightskip}{0pt plus 5cm}Punto\+::\+Punto (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_punto_a4b8b70b933ff13493ee5ddb3c8532c10}{}\label{class_punto_a4b8b70b933ff13493ee5ddb3c8532c10}
+
+
+Constructor. 
+
+Construye un objeto \hyperlink{class_punto}{Punto} y lo inicializa con los valores por defecto. 
+\begin{DoxyCode}
+6             \{
+7     x=0;
+8     y=0;
+9 \}
+\end{DoxyCode}
+\index{Punto@{Punto}!Punto@{Punto}}
+\index{Punto@{Punto}!Punto@{Punto}}
+\subsubsection[{\texorpdfstring{Punto(double x, double y)}{Punto(double x, double y)}}]{\setlength{\rightskip}{0pt plus 5cm}Punto\+::\+Punto (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{double}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{class_punto_a911bb8d88eaa1f9904a27b0e159a51c0}{}\label{class_punto_a911bb8d88eaa1f9904a27b0e159a51c0}
+
+
+Constructor. 
+
+Construye un objeto \hyperlink{class_punto}{Punto} y lo inicializa con los valores pasados. 
+\begin{DoxyParams}{Parámetros}
+{\em x} & Coordenada x del objeto \hyperlink{class_punto}{Punto} a crear. \\
+\hline
+{\em y} & Coordenada y del objeto \hyperlink{class_punto}{Punto} a crear. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+11                              \{
+12     \hyperlink{class_punto_a9afe2951a7fe4078eecace853608b109}{setX}(x);
+13     \hyperlink{class_punto_a299fda2149b242f0343772517cb40574}{setY}(y);
+14 \}
+\end{DoxyCode}
+
+
+\subsection{Documentación de las funciones miembro}
+\index{Punto@{Punto}!Distancia@{Distancia}}
+\index{Distancia@{Distancia}!Punto@{Punto}}
+\subsubsection[{\texorpdfstring{Distancia(\+Punto b)}{Distancia(Punto b)}}]{\setlength{\rightskip}{0pt plus 5cm}double Punto\+::\+Distancia (
+\begin{DoxyParamCaption}
+\item[{{\bf Punto}}]{b}
+\end{DoxyParamCaption}
+)}\hypertarget{class_punto_a0881575dfc445d87eb62d649764c3b1c}{}\label{class_punto_a0881575dfc445d87eb62d649764c3b1c}
+
+
+Método Público Auxiliar. 
+
+Devuelve la distancia entre dos objetos \hyperlink{class_punto}{Punto}. \begin{DoxyReturn}{Devuelve}
+Retorna la distancia heurística entre dos objetos \hyperlink{class_punto}{Punto}. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+37                               \{
+38     \textcolor{keywordflow}{return} sqrt(pow(x-b.\hyperlink{class_punto_af6657dca9bbda402a7ee28f460e1716d}{getX}(),2)+pow(y-b.\hyperlink{class_punto_ad6b70bca3b0ca4fc19a4796d359685b7}{getY}(),2));
+39 \}
+\end{DoxyCode}
+\index{Punto@{Punto}!getX@{getX}}
+\index{getX@{getX}!Punto@{Punto}}
+\subsubsection[{\texorpdfstring{get\+X()}{getX()}}]{\setlength{\rightskip}{0pt plus 5cm}double Punto\+::getX (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_punto_af6657dca9bbda402a7ee28f460e1716d}{}\label{class_punto_af6657dca9bbda402a7ee28f460e1716d}
+
+
+Método Get. 
+
+Devuelve la coordenada x del objeto \hyperlink{class_punto}{Punto}. \begin{DoxyReturn}{Devuelve}
+Retorna el dato miembro que representa a la coordenada x. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+16                   \{
+17     \textcolor{keywordflow}{return} x;
+18 \}
+\end{DoxyCode}
+\index{Punto@{Punto}!getY@{getY}}
+\index{getY@{getY}!Punto@{Punto}}
+\subsubsection[{\texorpdfstring{get\+Y()}{getY()}}]{\setlength{\rightskip}{0pt plus 5cm}double Punto\+::getY (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_punto_ad6b70bca3b0ca4fc19a4796d359685b7}{}\label{class_punto_ad6b70bca3b0ca4fc19a4796d359685b7}
+
+
+Método Get. 
+
+Devuelve la coordenada y del objeto \hyperlink{class_punto}{Punto}. \begin{DoxyReturn}{Devuelve}
+Retorna el dato miembro que representa a la coordenada y. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+20                   \{
+21     \textcolor{keywordflow}{return} y;
+22 \}
+\end{DoxyCode}
+\index{Punto@{Punto}!setX@{setX}}
+\index{setX@{setX}!Punto@{Punto}}
+\subsubsection[{\texorpdfstring{set\+X(double x)}{setX(double x)}}]{\setlength{\rightskip}{0pt plus 5cm}void Punto\+::setX (
+\begin{DoxyParamCaption}
+\item[{double}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{class_punto_a9afe2951a7fe4078eecace853608b109}{}\label{class_punto_a9afe2951a7fe4078eecace853608b109}
+
+
+Método Set. 
+
+Copia un nuevo valor al dato miembro x. 
+\begin{DoxyParams}{Parámetros}
+{\em x} & Valor nuevo que queremos dar a la coordenada x del objeto \hyperlink{class_punto}{Punto}. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+24                         \{
+25     this->x=x;
+26 \}
+\end{DoxyCode}
+\index{Punto@{Punto}!setY@{setY}}
+\index{setY@{setY}!Punto@{Punto}}
+\subsubsection[{\texorpdfstring{set\+Y(double y)}{setY(double y)}}]{\setlength{\rightskip}{0pt plus 5cm}void Punto\+::setY (
+\begin{DoxyParamCaption}
+\item[{double}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{class_punto_a299fda2149b242f0343772517cb40574}{}\label{class_punto_a299fda2149b242f0343772517cb40574}
+
+
+Método Set. 
+
+Copia un nuevo valor al dato miembro y. 
+\begin{DoxyParams}{Parámetros}
+{\em x} & Valor nuevo que queremos dar a la coordenada y del objeto \hyperlink{class_punto}{Punto}. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+28                         \{
+29     this->y=y;
+30 \}
+\end{DoxyCode}
+\index{Punto@{Punto}!To\+String@{To\+String}}
+\index{To\+String@{To\+String}!Punto@{Punto}}
+\subsubsection[{\texorpdfstring{To\+String()}{ToString()}}]{\setlength{\rightskip}{0pt plus 5cm}string Punto\+::\+To\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_punto_a57d2d4c38d80efce6b34397d8924d7ac}{}\label{class_punto_a57d2d4c38d80efce6b34397d8924d7ac}
+
+
+Método Público Auxiliar. 
+
+Devuelve el objeto \hyperlink{class_punto}{Punto} como un string separando los datos por comas. \begin{DoxyReturn}{Devuelve}
+Retorna el un string con el resultado. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+32                       \{
+33     \textcolor{keywordtype}{string} res=to\_string(x)+\textcolor{stringliteral}{","}+to\_string(y);
+34     \textcolor{keywordflow}{return} res;
+35 \}
+\end{DoxyCode}
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_punto_8h}{Punto.\+h}\item 
+src/\hyperlink{_punto_8cpp}{Punto.\+cpp}\end{DoxyCompactItemize}
