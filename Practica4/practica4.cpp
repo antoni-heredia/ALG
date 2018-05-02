@@ -104,8 +104,8 @@ double metodoInserccion(int ciudad_inicio, vector<ciudad> &ciudades,vector<vecto
     }
 
   }
-  vector<int> solu(ciudades.size());
 
+  vector<int> solu;
   solu.push_back(ciudadSur);
   solu.push_back(ciudadNorte);
   solu.push_back(ciudadEste);
@@ -116,22 +116,31 @@ double metodoInserccion(int ciudad_inicio, vector<ciudad> &ciudades,vector<vecto
   int mejorCiudad;
   int mejorPos;
   for(int i = 0; i < ciudades.size()-3; i++){
-    for(int j = 0; i < ciudades.size(); j++){
+
+	mejorCoste = INT_MAX;
+    for(int j = 0; j < ciudades.size(); j++){
+
       if(!visitados[ciudades[j].nombre]){
-        for (int k = 0; i < solu.size(); k++){
-          if( solu[k+1] == solu[solu.size()] )
-            distanciaAux = distancia - matriz[solu.front()][solu.back()] + matriz[solu.front()][ciudades[j].nombre] + matriz[solu.back()][ciudades[j].nombre];
-          else
-            distanciaAux = distancia - matriz[solu[k]][solu[k+1]] + matriz[solu[k]][ciudades[j].nombre] + matriz[solu[k+1]][ciudades[j].nombre];
-          if (distanciaAux < mejorCoste){
-            mejorCoste = distanciaAux;
-            mejorCiudad = ciudades[j].nombre;
-            mejorPos = k+1;
-          }
+
+        for (int k = 0; k < solu.size(); k++){
+
+			if( k+1 == solu.size() ){
+				distanciaAux = distancia - matriz[solu.front()][solu.back()] + matriz[solu.front()][ciudades[j].nombre] + matriz[solu.back()][ciudades[j].nombre];
+			}
+			else{
+				distanciaAux = distancia - matriz[solu[k]][solu[k+1]] + matriz[solu[k]][ciudades[j].nombre] + matriz[solu[k+1]][ciudades[j].nombre];		
+			}
+
+		  	if (distanciaAux < mejorCoste){
+				mejorCoste = distanciaAux;
+				mejorCiudad = ciudades[j].nombre;
+				mejorPos = k+1;
+			}
         }
       }
     }
-    solu.insert(solu.begin()+mejorPos,mejorCiudad);
+
+    solu.insert(solu.begin()+mejorPos,mejorCiudad-1);
     visitados[mejorCiudad] = true;
     distancia = mejorCoste;
   }
