@@ -77,7 +77,7 @@ int VecinoMasCercano(int ciudad_inicio, vector<ciudad> &ciudades,vector<vector<d
   matriz[solu[solu.size()-1]][solu[0]];
   return longi;
 }
-double metodoInserccion(int ciudad_inicio, vector<ciudad> &ciudades,vector<vector<double> > &matriz){
+pair<vector<int>,double> metodoInserccion(int ciudad_inicio, vector<ciudad> &ciudades,vector<vector<double> > &matriz){
   double norte=0,sur=INT_MAX,este = 0;
   int ciudadNorte=0,ciudadEste=0,ciudadSur=0;
 
@@ -144,7 +144,7 @@ double metodoInserccion(int ciudad_inicio, vector<ciudad> &ciudades,vector<vecto
     visitados[mejorCiudad] = true;
     distancia = mejorCoste;
   }
-  return distancia;
+  return pair<vector<int>,double>(solu, distancia);;
 }
 int main(int argc, char* argv[]){
   if(argc != 2){
@@ -157,11 +157,24 @@ int main(int argc, char* argv[]){
 
   int longitud = 0, opcion;
   opcion = atoi(argv[1]);
+  pair<vector<int>,double> resultado;
   if(opcion == 1)
     longitud = VecinoMasCercano(1, ciudades,matriz);
   if(opcion == 2)
-    longitud = metodoInserccion(1, ciudades,matriz);
+    resultado = metodoInserccion(1, ciudades,matriz);
 
-  cout<<longitud<<endl;
+
+	if(opcion == 1){
+
+	}
+
+	if(opcion == 2){
+		cout << "Dimension: " << ciudades.size() << endl;
+		for(int i = 0; i < resultado.first.size(); i++){
+			cout << resultado.first[i]+1 << "\n";
+		}
+	}
+	
+	
   return 0;
 }
