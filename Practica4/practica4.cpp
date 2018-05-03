@@ -46,8 +46,9 @@ vector<ciudad> leerFichero(){
   return ciudades;
 }
 
-int VecinoMasCercano(int ciudad_inicio, vector<ciudad> &ciudades,vector<vector<double> > &matriz){
-	int n=ciudades.size(),longi;
+pair<vector<int>,double>VecinoMasCercano(int ciudad_inicio, const vector<ciudad> &ciudades, const vector<vector<double> > &matriz){
+	int n=ciudades.size();
+  double longi;
 	int minimo=0,j,pos_minimo=0,contador=1,i=ciudad_inicio;
   vector<bool> aux(ciudades.size(),false);
   vector<int> solu(ciudades.size());
@@ -70,15 +71,15 @@ int VecinoMasCercano(int ciudad_inicio, vector<ciudad> &ciudades,vector<vector<d
 		contador++;
 	}
 
-  int sumatoria=0;
 	for(int i=0;i<ciudades.size()-1;i++){
 		longi+=matriz[solu[i]][solu[i+1]];
 	}
-  matriz[solu[solu.size()-1]][solu[0]];
-  return longi;
+  longi += matriz[solu[solu.size()-1]][solu[0]];
+  
+  return pair<vector<int>,double>(solu, longi);;
 }
 
-double coste(vector<int> Solucion,vector<vector<double> > &matriz){
+double coste( const vector<int> Solucion,const vector<vector<double> > &matriz){
   double coste = 0;
   for(unsigned int i = 0; i < Solucion.size()-1; ++i)
     coste += matriz[Solucion[i]][Solucion[i+1]];
@@ -88,7 +89,7 @@ double coste(vector<int> Solucion,vector<vector<double> > &matriz){
   return coste;
 }
 
-pair<vector<int>,double> metodoInserccion(vector<ciudad> &ciudades,vector<vector<double> > &matriz){
+pair<vector<int>,double> metodoInserccion(const vector<ciudad> &ciudades, const vector<vector<double> > &matriz){
   double norte=0,sur=INT_MAX,este = 0;
   int ciudadNorte=0,ciudadEste=0,ciudadSur=0;
 
@@ -163,7 +164,7 @@ pair<vector<int>,double> metodoInserccion(vector<ciudad> &ciudades,vector<vector
 
 
 //Método para calcular un recorrido para el viajante de comercio basado en el intercambio de aristas 2-opt:
-pair<vector<int>,double> ViajanteDeComercioIntercambio(vector<ciudad> & candidatos, vector<vector<double> > &matriz){
+pair<vector<int>,double> ViajanteDeComercioIntercambio(const vector<ciudad> & candidatos, const vector<vector<double> > &matriz){
 
   int aux;
   unsigned int pos;
@@ -219,26 +220,24 @@ int main(int argc, char* argv[]){
   vector<ciudad> ciudades = leerFichero();
   vector<vector<double> > matriz = CreaMatriz(ciudades);
 
-  int longitud = 0, opcion;
+  int opcion;
   opcion = atoi(argv[1]);
+
   pair<vector<int>,double> resultado;
+
   if(opcion == 1)
-    longitud = VecinoMasCercano(1, ciudades,matriz);
+    resultado = VecinoMasCercano(1, ciudades,matriz);
   if(opcion == 2)
     resultado = metodoInserccion(ciudades,matriz);
   if(opcion == 3)
     resultado =  ViajanteDeComercioIntercambio(ciudades,matriz);
 
-	if(opcion == 1){
 
-	}
-
-	if(opcion == 2 || opcion == 3){
-		cout << "Dimension: " << ciudades.size() << endl;
-		for(int i = 0; i < resultado.first.size(); i++){
-			cout << resultado.first[i]+1 << "\n";
-		}
-	}
+  cout << "Dimension: " << ciudades.size() << endl;
+  for(int i = 0; i < resultado.first.size(); i++){
+    cout << resultado.first[i]+1 << "\n";
+  }
+	
 
 
   return 0;
