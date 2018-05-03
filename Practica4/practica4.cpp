@@ -77,8 +77,18 @@ int VecinoMasCercano(int ciudad_inicio, vector<ciudad> &ciudades,vector<vector<d
   matriz[solu[solu.size()-1]][solu[0]];
   return longi;
 }
-//¿Se quita ciudad de inicio?
-pair<vector<int>,double> metodoInserccion(int ciudad_inicio, vector<ciudad> &ciudades,vector<vector<double> > &matriz){
+
+double coste(vector<int> Solucion,vector<vector<double> > &matriz){
+  double coste = 0;
+  for(unsigned int i = 0; i < Solucion.size()-1; ++i)
+    coste += matriz[Solucion[i]][Solucion[i+1]];
+
+  coste += matriz[Solucion.front()][Solucion.back()];
+
+  return coste;
+}
+
+pair<vector<int>,double> metodoInserccion(vector<ciudad> &ciudades,vector<vector<double> > &matriz){
   double norte=0,sur=INT_MAX,este = 0;
   int ciudadNorte=0,ciudadEste=0,ciudadSur=0;
 
@@ -150,6 +160,56 @@ pair<vector<int>,double> metodoInserccion(int ciudad_inicio, vector<ciudad> &ciu
   }
   return pair<vector<int>,double>(solu, distancia);;
 }
+
+
+//Método para calcular un recorrido para el viajante de comercio basado en el intercambio de aristas 2-opt:
+pair<vector<int>,double> ViajanteDeComercioIntercambio(vector<ciudad> & candidatos, vector<vector<double> > &matriz){
+
+  int aux;
+  unsigned int pos;
+  vector<int> S_aux, S;
+  double coste_aux;
+  bool mejor_enc, cambio_realizado = true;
+
+  //Considerar una solución inicial:
+  //En este caso utilizaremos el método del vecino más cercano:
+  auto SolInicio = metodoInserccion(candidatos, matriz);
+  S = SolInicio.first;
+  double mejor_coste = SolInicio.second;
+
+  while(cambio_realizado){
+    cambio_realizado = false;
+    for(unsigned int i = 0; i < S.size()-1; ++i){
+      mejor_enc = false;
+      //Examinar los movimientos 2-opt que incluyan la arista de i a su sucesor en el ciclo:
+      for(unsigned int j = i + 1; j < S.size(); ++j){
+        S_aux = S;
+        //Intercambiar
+        aux = S_aux[i];
+        S_aux[i] = S_aux[j];
+        S_aux[j] = aux;
+        //Calcular el coste de la nueva solución:
+        coste_aux = coste(S_aux, matriz);
+        //Si es mejor guardo:
+        if(coste_aux < mejor_coste){
+          mejor_enc = true;
+          pos = j;
+          mejor_coste = coste_aux;
+        }
+      }
+      //Si se ha encontrado algo mejor, intercamio:
+      if(mejor_enc){
+        cambio_realizado = true;
+        aux = S[i];
+        S[i] = S[pos];
+        S[pos] = aux;
+      }
+    }
+  }
+  return pair<vector<int>, double>(S, mejor_coste);
+}
+
+
 int main(int argc, char* argv[]){
   if(argc != 2){
     cout << "Error en el numero de parametros pasados"<<endl;
@@ -165,14 +225,15 @@ int main(int argc, char* argv[]){
   if(opcion == 1)
     longitud = VecinoMasCercano(1, ciudades,matriz);
   if(opcion == 2)
-    resultado = metodoInserccion(1, ciudades,matriz);
-
+    resultado = metodoInserccion(ciudades,matriz);
+  if(opcion == 3)
+    resultado =  ViajanteDeComercioIntercambio(ciudades,matriz);
 
 	if(opcion == 1){
 
 	}
 
-	if(opcion == 2){
+	if(opcion == 2 || opcion == 3){
 		cout << "Dimension: " << ciudades.size() << endl;
 		for(int i = 0; i < resultado.first.size(); i++){
 			cout << resultado.first[i]+1 << "\n";
