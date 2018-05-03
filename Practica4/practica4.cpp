@@ -77,6 +77,7 @@ int VecinoMasCercano(int ciudad_inicio, vector<ciudad> &ciudades,vector<vector<d
   matriz[solu[solu.size()-1]][solu[0]];
   return longi;
 }
+//¿Se quita ciudad de inicio?
 pair<vector<int>,double> metodoInserccion(int ciudad_inicio, vector<ciudad> &ciudades,vector<vector<double> > &matriz){
   double norte=0,sur=INT_MAX,este = 0;
   int ciudadNorte=0,ciudadEste=0,ciudadSur=0;
@@ -115,32 +116,35 @@ pair<vector<int>,double> metodoInserccion(int ciudad_inicio, vector<ciudad> &ciu
   double mejorCoste = INT_MAX;
   int mejorCiudad;
   int mejorPos;
+  //Numero de pasadas que se necesitan para meter el resto de ciudades que quedan(al tener ya tres para el triangulo)
   for(int i = 0; i < ciudades.size()-3; i++){
 
-	mejorCoste = INT_MAX;
+	   mejorCoste = INT_MAX;
+     //Vamos visitaqndo todas las ciudades
     for(int j = 0; j < ciudades.size(); j++){
-
-      if(!visitados[ciudades[j].nombre]){
-
+      //Se mira si ya esta visitada
+      if(!visitados[j]){
+        //Se recorren las soluciones para ver entre que dos puntos es menor la distancia al introducirlo.
         for (int k = 0; k < solu.size(); k++){
-
-			if( k+1 == solu.size() ){
-				distanciaAux = distancia - matriz[solu.front()][solu.back()] + matriz[solu.front()][ciudades[j].nombre] + matriz[solu.back()][ciudades[j].nombre];
-			}
-			else{
-				distanciaAux = distancia - matriz[solu[k]][solu[k+1]] + matriz[solu[k]][ciudades[j].nombre] + matriz[solu[k+1]][ciudades[j].nombre];		
-			}
-
-		  	if (distanciaAux < mejorCoste){
-				mejorCoste = distanciaAux;
-				mejorCiudad = ciudades[j].nombre;
-				mejorPos = k+1;
-			}
+            //En el caso de que sea entre el primero del vector y el ultimo
+      			if( k+1 == solu.size() ){
+      				distanciaAux = distancia - matriz[solu.front()][solu.back()] + matriz[solu.front()][j] + matriz[solu.back()][j];
+            //Si no es entre la primera y la ultima
+      			}else{
+      				distanciaAux = distancia - matriz[solu[k]][solu[k+1]] + matriz[solu[k]][j] + matriz[solu[k+1]][j];
+      			}
+            //Se mira si el coste de esta ciudad es menor que el de la anteriro y si es asi se pone como la mejor opcion hasta el momento
+    		  	if (distanciaAux < mejorCoste){
+    				mejorCoste = distanciaAux;
+    				mejorCiudad = j;
+    				mejorPos = k+1;
+    			}
         }
       }
     }
-
-    solu.insert(solu.begin()+mejorPos,mejorCiudad-1);
+    //Se inserta la que obtiene una mejor distancia en la posicion en la que se obtuvo
+    solu.insert(solu.begin()+mejorPos,mejorCiudad);
+    //Se marca la ciudad como leida para no utilizarla en la siguientes pasadas
     visitados[mejorCiudad] = true;
     distancia = mejorCoste;
   }
@@ -174,7 +178,7 @@ int main(int argc, char* argv[]){
 			cout << resultado.first[i]+1 << "\n";
 		}
 	}
-	
-	
+
+
   return 0;
 }
