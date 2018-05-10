@@ -2,3 +2,5 @@
 /Teoria/Tema1/BurbujaJava/dist/
 /Teoria/Tema1/BurbujaJava/build/
 *_exe
+*.vscode
+*.out

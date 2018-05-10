@@ -1,0 +1,1 @@
+Datos obtenidos usando un conjunto de 45 elementos. Y buscando una suma desde el 15 hasta el 28.
