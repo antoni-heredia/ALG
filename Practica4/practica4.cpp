@@ -15,7 +15,7 @@ struct ciudad{
 };
 
 double distancia(punto a,punto b){
-	return sqrt(pow(a.x-b.x,2)+pow(a.y-b.y,2));
+	return round(sqrt(pow(a.x-b.x,2)+pow(a.y-b.y,2)));
 }
 vector<vector<double> > CreaMatriz(const vector<ciudad> &ciudades){
 	int j,i;
@@ -49,7 +49,8 @@ vector<ciudad> leerFichero(){
 pair<vector<int>,double>VecinoMasCercano(int ciudad_inicio, const vector<ciudad> &ciudades, const vector<vector<double> > &matriz){
 	int n=ciudades.size();
   double longi;
-	int minimo=0,j,pos_minimo=0,contador=1,i=ciudad_inicio;
+  double minimo = 0;
+	int j,pos_minimo=0,contador=1,i=ciudad_inicio;
   vector<bool> aux(ciudades.size(),false);
   vector<int> solu(ciudades.size());
 
@@ -75,7 +76,7 @@ pair<vector<int>,double>VecinoMasCercano(int ciudad_inicio, const vector<ciudad>
 		longi+=matriz[solu[i]][solu[i+1]];
 	}
   longi += matriz[solu[solu.size()-1]][solu[0]];
-  
+
   return pair<vector<int>,double>(solu, longi);;
 }
 
@@ -237,7 +238,7 @@ int main(int argc, char* argv[]){
   for(int i = 0; i < resultado.first.size(); i++){
     cout << resultado.first[i]+1 << "\n";
   }
-	
+
 
 
   return 0;
