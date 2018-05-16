@@ -1,9 +1,5 @@
 #!/bin/bash
 
-
-# Script de bash que genera una imagen con los resultados del algoritmo burbuja
-# para arrays de diferentes tamaños.
-
 # Variables:
 INICIO=20
 FIN=100
