@@ -3,19 +3,20 @@
 #include <iostream>
 #include <stdlib.h>
 #include <limits.h>
+
 using namespace std;
 
 struct Jugador{
 	int id;
 	int puntuacion;
 };
-void FuerzaBruta(const vector<Jugador> & conjunto, int  posActual,int sumaEquipo2, vector<Jugador> & mejorSolucion, vector<Jugador> solucionActual, int sumaEquipo1, int & mejorDiferencia);
+void backtraking(const vector<Jugador> & conjunto, int  posActual,int sumaEquipo2, vector<Jugador> & mejorSolucion, vector<Jugador> solucionActual, int sumaEquipo1, int & mejorDiferencia);
 int sumaEquipo(vector<Jugador> equipo);
 int main(int argc, char* argv[]){
 
 	if(argc != 2){
 		cout << "numero de parametros incorrecto" << endl;
-		cout << "./fuerzabruta cantidadJugadoress" << endl;
+		cout << "./backtraking cantidadJugadoress" << endl;
 		exit(1);
 	}
 	vector<Jugador> conjunto;
@@ -39,8 +40,9 @@ int main(int argc, char* argv[]){
 	clock_t tini; // Anotamos el tiempo de inicio
 	clock_t tfin; // Anotamos el tiempo de finalización
 	tini = clock();
-	int mejorDiferencia = INT_MAX;
-	FuerzaBruta(conjunto,0,sumaTotal,solucion,solucionActual,0,mejorDiferencia);
+
+	int diferenciaMaxima = INT_MAX;
+	backtraking(conjunto,0,sumaTotal,solucion,solucionActual,0,diferenciaMaxima);
 	tfin = clock();
 
 	//cout << "\t" << (double)(tfin - tini)  << endl;
@@ -66,63 +68,62 @@ int sumaEquipo(vector<Jugador> equipo){
 	return sumaTotal;
 }
 
-void FuerzaBruta(const vector<Jugador> & conjunto, int  posActual,int sumaEquipo2, vector<Jugador> & mejorSolucion, vector<Jugador> solucionActual, int sumaEquipo1, int & mejorDiferencia){
+void backtraking(const vector<Jugador> & conjunto, int  posActual,int sumaEquipo2, vector<Jugador> & mejorSolucion, vector<Jugador> solucionActual, int sumaEquipo1, int & mejorDiferencia){
 
 	if(posActual == conjunto.size()){
 		//Comprobamos si la solucion es buena y si es asi la añadimos a las soluciones
 		
 		int diferenciaActual = abs(sumaEquipo2-sumaEquipo1);
-
-		if( diferenciaActual < mejorDiferencia){
-			cout << "tenemos una buena" << endl;
+		if(diferenciaActual < mejorDiferencia){
 			mejorSolucion = solucionActual;
 			mejorDiferencia = diferenciaActual;
 		}
 			
 	}else{
-		int diferenciaActual = abs(sumaEquipo2-sumaEquipo1);
 
-		//while(posActual < conjunto.size() && mejorDiferencia != 0 && diferenciaActual <= mejorDiferencia){
-		while(posActual < conjunto.size() && diferenciaActual != 0 ){
-		
+		while(posActual < conjunto.size() && mejorDiferencia != 0){
+			
+			int puntuacion = conjunto[posActual].puntuacion;
+			sumaEquipo2 -= puntuacion;
+			sumaEquipo1 += puntuacion;
 			
 			solucionActual.push_back(conjunto[posActual]);
 
-			int nuevaSumaEquipo2 = sumaEquipo2-conjunto[posActual].puntuacion;
-			int nuevaSumaEquipo1 = sumaEquipo1 + conjunto[posActual].puntuacion;
-			
-			diferenciaActual = abs(nuevaSumaEquipo2-nuevaSumaEquipo1);
-			
-			
+			int diferenciaActual = abs(sumaEquipo2-sumaEquipo1);
+
+			posActual++;
+
 			if(diferenciaActual == 0){
-				//cout << "diferencia 0" << endl;
+				mejorDiferencia = 0;
+				mejorSolucion = solucionActual;
+			}else if(diferenciaActual <= mejorDiferencia){ //aqui se realiza la poda
+				
+				int difAnterior = mejorDiferencia;
+				vector<Jugador> solAnterior = mejorSolucion;
+
 				mejorDiferencia = diferenciaActual;
 				mejorSolucion = solucionActual;
-			}else{
 
-				posActual++;
-				/*
-				if(diferenciaActual < mejorDiferencia)
-					mejorDiferencia = diferenciaActual;
-					
-				int mej = mejorDiferencia;
-				*/
-				FuerzaBruta(conjunto,posActual,nuevaSumaEquipo2,mejorSolucion,solucionActual, nuevaSumaEquipo1, mejorDiferencia);
-				//mejorDiferencia = mej;
-
-
-				if(!solucionActual.empty())
-					solucionActual.pop_back();
+				backtraking(conjunto,posActual,sumaEquipo2,mejorSolucion,solucionActual,sumaEquipo1,mejorDiferencia);
+				if(mejorDiferencia > difAnterior){
+					mejorDiferencia = difAnterior;
+					mejorSolucion = solAnterior;
+				}
 			}
+
+			sumaEquipo2 += puntuacion;
+			sumaEquipo1 -= puntuacion;
+
+			solucionActual.pop_back();
 
 		}
 
+		int diferenciaActual = abs(sumaEquipo2-sumaEquipo1);
 
-		diferenciaActual = abs(sumaEquipo2-sumaEquipo1);
 		if(diferenciaActual < mejorDiferencia){
 			mejorSolucion = solucionActual;
 			mejorDiferencia = diferenciaActual;
 		}
-		
+
 	}
 }
