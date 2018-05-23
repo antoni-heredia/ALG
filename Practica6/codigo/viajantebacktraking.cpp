@@ -45,10 +45,10 @@ vector<ciudad> leerFichero();
 /*********************************************************************************************************************************************/
 
 // calcula el camino optimo
-void backtraking(vector<ciudad> &ciudadesporvisitar,
+void backtraking(vector<ciudad> ciudadesporvisitar,
                  const vector<vector<double> > &matrizdistancias,
                  pair<vector<ciudad>, double> &mejorSolucion,
-                 pair<vector<ciudad>, double> &solucionactual);
+                 pair<vector<ciudad>, double> solucionactual);
 
 /*********************************************************************************************************************************************/
 
@@ -83,29 +83,34 @@ int main(int argc, char *argv[]) {
 
 /*********************************************************************************************************************************************/
 
-void backtraking(vector<ciudad> &ciudadesporvisitar,
+void backtraking(vector<ciudad> ciudadesporvisitar,
                  const vector<vector<double> > &matrizdistancias,
                  pair<vector<ciudad>, double> &mejorSolucion,
-                 pair<vector<ciudad>, double> &solucionactual) {
+                 pair<vector<ciudad>, double> solucionactual) {
   if (ciudadesporvisitar.empty()) {
     // Si estamos en un nodo hoja, es decir hemos añadido todas las ciudades
-    mejorSolucion = solucionactual;
+    //miramos la distancia del ultimo al primero para ver si mejora en algun caso
+    double distancia = matrizdistancias[solucionactual.first.back().posicionVector][solucionactual.first[0].posicionVector];
+    solucionactual.second += distancia;
+
+    if(solucionactual.second < mejorSolucion.second)
+      mejorSolucion = solucionactual;
+
+    solucionactual.second -= distancia;
 
   } else {
     // Si nos falta por añadir ciudades, seguimos viendo cual puede ser mejor
     for (int i = 0; i < ciudadesporvisitar.size(); i++) {
       ciudad ciudadfront = ciudadesporvisitar[0];
       pop_front(ciudadesporvisitar);
-      //cout << ciudadfront.nombre << endl;
 
-      int distancia = matrizdistancias[solucionactual.first.back().posicionVector][ciudadfront.posicionVector];
+
+      double distancia = matrizdistancias[solucionactual.first.back().posicionVector][ciudadfront.posicionVector];
       solucionactual.second += distancia;
       solucionactual.first.push_back(ciudadfront);
 
       if(solucionactual.second < mejorSolucion.second){
         backtraking(ciudadesporvisitar,matrizdistancias,mejorSolucion,solucionactual);
-      }else{
-        //cout << "poda" << endl;
       }
 
       //vuelvo hacia atras
@@ -120,7 +125,7 @@ void backtraking(vector<ciudad> &ciudadesporvisitar,
 /*********************************************************************************************************************************************/
 
 double distancia(punto a, punto b) {
-  return round(sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)));
+  return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
 }
 
 /*********************************************************************************************************************************************/
