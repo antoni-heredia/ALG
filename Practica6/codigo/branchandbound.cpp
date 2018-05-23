@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include <assert.h>     /* assert */
-
+#include <map>
 using namespace std;
 
 
@@ -100,6 +100,7 @@ void backtraking(vector<ciudad> ciudadesporvisitar,
     solucionactual.second -= distancia;
 
   } else {
+    multimap<double,pair<pair<vector<ciudad>, double>,vector<ciudad> > > hijos;
     // Si nos falta por añadir ciudades, seguimos viendo cual puede ser mejor
     for (int i = 0; i < ciudadesporvisitar.size(); i++) {
       ciudad ciudadfront = ciudadesporvisitar[0];
@@ -110,16 +111,25 @@ void backtraking(vector<ciudad> ciudadesporvisitar,
       solucionactual.second += distancia;
       solucionactual.first.push_back(ciudadfront);
 
-      if(solucionactual.second < mejorSolucion.second){
-        backtraking(ciudadesporvisitar,matrizdistancias,mejorSolucion,solucionactual);
-      }
 
+      if(solucionactual.second < mejorSolucion.second){
+        pair<double,pair<pair<vector<ciudad>, double>,vector<ciudad> > > nuevoHijo;
+        nuevoHijo.first = solucionactual.second;
+        nuevoHijo.second.first = solucionactual;
+        nuevoHijo.second.second = ciudadesporvisitar;
+        hijos.insert (  nuevoHijo  );
+      }
       //vuelvo hacia atras
       solucionactual.second -= distancia;
       solucionactual.first.pop_back();
       ciudadesporvisitar.push_back(ciudadfront);
 
     }
+    std::multimap<double,pair<pair<vector<ciudad>, double>,vector<ciudad> > >::iterator it;
+    for (it=hijos.begin(); it!=hijos.end(); ++it)
+      backtraking(it->second.second,matrizdistancias,mejorSolucion,it->second.first);
+
+
   }
 }
 
